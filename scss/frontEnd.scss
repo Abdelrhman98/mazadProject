@@ -1,0 +1,49 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/*
+    Created on : 2018, 9:00:21 PM
+    Author     : boodey
+*/
+// sass --watch /opt/lampp/htdocs/goCS/layOut/scss:/opt/lampp/htdocs/goCS/layOut/css --style compressed
+// sass --watch /opt/lampp/htdocs/goCS/layOut/scss:/opt/lampp/htdocs/goCS/layOut/css --style compact
+// sass --watch /opt/lampp/htdocs/goCS/layOut/scss:/opt/lampp/htdocs/goCS/layOut/css --style expand
+
+//start of importing other sass files
+@import "_vendor";
+@import "_colors";
+@import "_mixins";
+@import "_globals";
+@import "_vars";
+@import "_fonts";
+
+@import "_comp/_form-signUp.scss";
+@import "_comp/_form-signIn.scss";
+@import "_comp/_side.scss";
+@import "_comp/_nav.scss";
+@import "_comp/_profile.scss";
+@import "_comp/_feedbacks.scss";
+
+
+*{
+    margin: 0px;
+    padding: 0px;
+    @include box-sizing(border-box);}
+li{list-style: none;}
+a{text-decoration: none;}
+input{outline: medium none currentcolor;}
+body{
+    background-color:$back-color;
+    margin-top: 100px;
+    width:104%;
+    overflow-x: hidden;}
+.blur{color:#ddd;}
+i.fa{ font-size: 26px;  }
+
+.rotate-180{
+    @include smooth();
+    transform: rotate(180deg);
+    color:$main-color;
+}
