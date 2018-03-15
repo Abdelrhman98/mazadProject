@@ -1,7 +1,7 @@
 <?php
 
 class user{
-    public $firstName;
+    private $firstName;
     private $lastName;
     private $gender;
     private $userRole;
@@ -13,17 +13,16 @@ class user{
     private $followers;
     private $birthDate;
     private $biddings;
-    private $createdSessions;            
+    private $createdSessions;
     private $arrayOfData;
+    
     public function __construct($email ="", $password =""){
         $this->email = $email;
         $this->password = $password;
+//        echo "GOOOOOOOOOOOOOOOD";
         //$this->logIn();
     }
 
-    public function getFirstName(){
-        return $this->firstName;
-    }
 
     public function lsData(){
         echo $this->firstName. $this->lastName;
@@ -49,7 +48,7 @@ class user{
             $_SESSION['birthDate']      = $allData[0]['birthDate'];
             $_SESSION['user']           = new user($this->email, $this->password);
             $_SESSION['user']->setData();
-            header("location:dashboard.php");
+            header("location:index.php");
             } 
             else{
                 echo "pad";
@@ -77,4 +76,74 @@ class user{
             session_destroy(); 
             header("location:login.php");
         }
+
+    /**
+     * Get the value of firstName
+     */ 
+    public function getFirstName()
+    {
+        return $this->firstName;
     }
+
+    /**
+     * Set the value of firstName
+     *
+     * @return  self
+     */ 
+    public function setFirstName($firstName)
+    {
+        $this->firstName = $firstName;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of lastName
+     */ 
+    public function getLastName()
+    {
+        return $this->lastName;
+    }
+
+    /**
+     * Set the value of lastName
+     *
+     * @return  self
+     */ 
+    public function setLastName($lastName)
+    {
+        $this->lastName = $lastName;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of gender
+     */ 
+    public function getGender()
+    {
+        return $this->gender;
+    }
+
+    /**
+     * Set the value of gender
+     *
+     * @return  self
+     */ 
+    public function setGender($gender)
+    {
+        $this->gender = $gender;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of imgPath
+     */
+    public function getImgPath(){
+        echo ($_SESSION['imagePath'] == '')?"imgs/12.jpg":$_SESSION['imagePath'];
+        
+    }//end of getImage
+    }
+
+$masterUser = new user("","");

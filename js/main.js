@@ -71,9 +71,17 @@ for(var i = 0; i< numOfStars ; i++){
 }
 $("aside.left-side ul li").on("click", function(){
     "use strict";
-    $("section.content").children().css(({"display":"none", "opacity":"0"}));
-    $("section."+$(this).data("dir")).css({"display":"block"}).animate({"opacity":"1"});
-    $(this).addClass("active").siblings().removeClass("active");
+    if($(this).data("on") == true)
+    {
+        $("section.content").children().css(({"display":"none", "opacity":"0"}));
+        $("section."+$(this).data("dir")).css({"display":"block"}).animate({"opacity":"1"});
+        $(this).addClass("active").siblings().removeClass("active");
+    }
+});
+
+$(".rotate").on("click", function(){
+    "use strict";
+    (!$(this).hasClass("rotate-180"))?$(this).addClass("rotate-180"):$(this).removeClass("rotate-180");
 });
 
 $("i.ll").on("click", function(){
@@ -86,5 +94,84 @@ $("i.ll").on("click", function(){
         $("div.info div.drop-down").css({"opacity":"0"});
         $(this).removeClass("rotate-180");
     }
+});
+
+var style = $("link.sepp");
+$("ul li.chng").on("click", function(){
+    var STYLE_ROOT = "css/styles/";
+    "use strict";
+    if($("link.sepp").attr("href") ==  STYLE_ROOT +"frontEnd.css" ){
+        $("link.sepp").attr("href", STYLE_ROOT + "frontEnd2.css");
+    }else{
+        $("link.sepp").attr("href", STYLE_ROOT + "frontEnd.css");
+    }
+});
+
+
+var switchName = $('.switch');
+switchName.append('<div class="sig"><span class="off">OFF</span><span class="sp"> &nbsp;<span class="dot"> &nbsp;</span></span><span class="on">ON</span></div>');
+var child = $(".switch").children('.sig');
+$(".switch").each(function( index ) {
+    $(this).children('.sig').css("left", $(this).data("off"));
+  });
+
+switchName.append('<input type = "hidden" name=' + switchName.data("name") + ' value="0" class = "switchInput">');
+$('.switch').on("click", function(){
+    "use strict";
+    var child = $(this).children('.sig');
+    var val = (child.css('left') == $(this).data('off'))?$(this).data('on'):$(this).data('off');
+    child.animate({'left':val}, 100);
+    if($(this).data('tar') == false){
+        $(this).children("input.switchInput").attr("value", 1);
+        $(this).data('tar', true);
+    }else{
+        $(this).children("input.switchInput").attr("value", 0);
+        $(this).data('tar',false);
+    }
+    //$(this).data('tar');
+    //console.log($(this).children("input.switchInput").attr("value"));
+});
+
+
+$('input[type="range"]').on("click", function(){
+    "use strict";
+    var value = document.getElementById('val');
+    value.innerHTML = $('input[type="range"]').val();
+});
+var tag = 0;
+var tagVal = "";
+$("input.tagsInput").on("keypress", function(e){
+    if(tag === 0 && e.which == 43){
+        $("div.tags").show(500);
+        console.log("good");
+    }
+    if(e.which == 43) {
+        tag++;
+        $("div.tags").append("<div class='qur'></div>");
+        tagVal += $(this).val() + "|";
+        $("div.qur:last").text($(this).val());
+        $("div.qur:last").animate({"opacity":"1"},500);
+        $("input.setTags").attr("value", tagVal);
+        $(this).val("");
+        $("div.tags").show();
+    }
+    if($(this).val() == "+")
+        $(this).val("");
+});
+
+
+$("div.tags").on("dblclick", function(){
+    "use strict";
+    $("input.tagsInput").val("");
+    $(this).hide(500, function(){
+        $(this).text("");
+        tagVal = "";
+        tag=0;
+    });
     
+});
+
+$("span.title").on("click", function(){
+    "use strict";
+    $(this).children("ul").fadeOut;
 });

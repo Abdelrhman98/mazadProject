@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <link rel="stylesheet" href="css/fontawesome-all.min.css" />
     <link rel="stylesheet" href="css/animate.css" />
-    <link rel="stylesheet" href="css/frontEnd.css" />
+    <link rel="stylesheet" href="css/frontEnd.css" data-style="true" class="sepp"/>
     <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">-->
 </head>
 
@@ -36,7 +36,7 @@
                     <span class="balance">
                         <span>5.00</span>
                         <sup>EGP<i class="fa fa-dolar"></i></sup>
-                        <i class="fa fa-angle-down sz"></i>
+                        <i class="fa fa-angle-down sz rotate"></i>
                     </span>
                 </div>
             </div>
@@ -84,27 +84,27 @@
 <aside class="left-side">
     <div class="content">
         <ul>
-            <li class="active" data-dir = "admin-panel">
+            <li class="active" data-dir = "admin-panel" data-on="true">
                 <i class="fab fa-buromobelexperte"></i>
                 <span>Admin panel</span>
             </li>
-            <li data-dir = "profile">
+            <li data-dir = "profile" data-on="true">
                 <i class="far fa-user-circle"></i>
                 <span>Account</span>
             </li>
-            <li>
+            <li data-on="true">
                 <i class="fas fa-assistive-listening-systems"></i>
-                <span>Following</span>
+                <span>Make Session</span>
             </li>
-            <li>
+            <li class="chng" data-on="false">
                 <i class="fas fa-paint-brush"></i>
                 <span>Theme</span>
             </li>
-            <li>
+            <li data-on="true">
                 <i class="fas fa-cog"></i>
                 <span>Settings</span>
             </li>
-            <li>
+            <li data-on="true">
                 <i class="fas fa-power-off"></i>
                 <span>
                     <a href="logout.php">
@@ -115,6 +115,7 @@
         </ul>
     </div>
 </aside>
+<!-- xxxx -->
 <section class="content">
     <section class="profile col-11">
         <div class="container-fluid">
@@ -326,7 +327,7 @@
                                     Aisha
                                 </th>
                                 <th>
-                                    <div class="stars" data-rate = "4">
+                                    <div class="stars" data-rate = "3">
                                         <i class="far fa-star 1"></i>
                                         <i class="far fa-star 2"></i>
                                         <i class="far fa-star 3"></i>
@@ -348,7 +349,260 @@
                 </div>
         </div><!-- end of div container-fluid-->
     </section><!-- end of section profile-->
+
+    <section class="admin-panel col-11">
+        <div class="container-fluid">
+            <h2>Admin Panel</h2>
+            <div class="stat">
+                <h3>Statistics</h3>
+                <div class="con">
+                    <p>users</p>
+                    <div class="cir">
+                        <span class="number">1,982</span>
+                    </div>
+                </div>
+
+                <div class="con">
+                    <p>Sessions</p>
+                    <div class="cir">
+                        <span class="number">123</span>
+                    </div>
+                </div>
+
+                <div class="con">
+                    <p>Admin</p>
+                    <div class="cir">
+                        <span class="number">19</span>
+                    </div>
+                </div>
+
+                <div class="con">
+                    <p>Categories</p>
+                    <div class="cir">
+                        <span class="number">8</span>
+                    </div>
+                </div>
+            </div><!-- end of div.stat-->
+            <div class="manage-user">
+                <h3>manage-user</h3>
+                <div class="tbl">
+                    <table>
+                        <tr class="head">
+                            <th>Photo</th>
+                            <th>Name</th>
+                            <th>Rate</th>
+                            <th>Number Of Reports</th>
+                            <th> controls</th>
+                        </tr>
+                        <?php 
+                            include "class/database.class.php";
+                            $test = new dataBase("localhost","mazad", "root", "1234A");
+                            $test->setTable('user');
+                            $allData = $test->select();
+                            for($i = 0; $i<sizeof($allData);$i++){
+                                echo '<tr>
+                                <th>
+                                    <div class="cir">
+                                        <img src="imgs/original.jpg" alt="">
+                                    </div>
+                                </th>
+                                <th>';
+                                    echo $allData[$i]['firstName'];
+                                echo '</th>
+                                <th>
+                                    190
+                                </th>
+                                <th>
+                                    3
+                                </th>
+                                <th>
+                                    <button>Deactivte</button>
+                                    <button class="danger">Delete</button>
+                                </th>
+                            </tr>';
+                            }
+                        ?>
+                        
+                    </table>
+                </div><!-- end of div tbl-->
+            </div><!-- end of div manage-user-->
+
+            <div class="manage-cats">
+                <h3>Manage Categories</h3>
+                <table>
+                    <tr class="head">
+                        <th>Icon</th>
+                        <th>Name</th>
+                        <th>Number Of Session</th>
+                        <th>Details</th>
+                        <th> controls</th>
+                    </tr>
+                    <tr>
+                        <th>
+                            <div class="cir">
+                                <i class="fas fa-car"></i>
+                            </div>
+                        </th>
+                        <th>
+                            cars
+                        </th>
+                        <th>
+                            24
+                        </th>
+                        <th>
+                            buying old cars
+                        </th>
+                        <th>
+                            <button>Edit</button>
+                            <button class="danger">Delete</button>
+                        </th>
+                    </tr>
+                </table>
+                <button class="add">Add New</button>
+            </div><!-- end of div manage-cats-->
+
+            <div class="manage-cats">
+                    <h3>Manage Categories</h3>
+                    <table>
+                        <tr class="head">
+                            <th>Icon</th>
+                            <th>Name</th>
+                            <th>Number Of Session</th>
+                            <th>Details</th>
+                            <th>controls</th>
+                        </tr>
+                        <tr>
+                            <th>
+                                <div class="cir">
+                                    <i class="fas fa-car"></i>
+                                </div>
+                            </th>
+                            <th>
+                                cars
+                            </th>
+                            <th>
+                                24
+                            </th>
+                            <th>
+                                selling old cars
+                            </th>
+                            <th>
+                                <button>Edit</button>
+                                <button class="danger">Delete</button>
+                            </th>
+                        </tr>
+                        <tr>
+                                <th>
+                                    <div class="cir">
+                                        <i class="fas fa-car"></i>
+                                    </div>
+                                </th>
+                                <th>
+                                    cars
+                                </th>
+                                <th>
+                                    24
+                                </th>
+                                <th>
+                                    selling old cars
+                                </th>
+                                <th>
+                                    <button>Edit</button>
+                                    <button class="danger">Delete</button>
+                                </th>
+                            </tr>
+                    </table>
+                    <button class="add">Add New</button>
+                </div><!-- end of div manage-cats-->
+
+                <div class="manage-session">
+                    <h3>Manage Session</h3>
+                    <table>
+                        <tr class="head">
+                            <th>Id</th>
+                            <th>Auto Sell</th>
+                            <th>Blind</th>
+                            <th>startTime</th>
+                            <th>endTime</th>
+                            <th>Item</th>
+                            <th>Controls</th>
+                        </tr>
+                        <tr>
+                            <th>
+                                12
+                            </th>
+                            <th>
+                                400K<sup>EGP</sup>
+                            </th>
+                            <th>
+                                <i class="fas fa-circle off"></i>
+                            </th>
+                            <th>
+                                11.2.2018 9:23 PM
+                            </th>
+                            <th>
+                                12.2.2018 10:03 PM
+                            </th>
+                            <th>
+                                BMW E36
+                            </th>
+                            <th>
+                                <button>Block</button>
+                                <button class="danger">Delete</button>
+                            </th>
+                        </tr>
+                    </table>
+                    <!-- id  autoSell 	isBlind 	startTime 	endTime 	itemId  -->
+                </div>
+        </div><!-- end of section container-fluid-->
+
+    </section><!-- end of section admin-panel-->
+
 </section><!-- end of section conent-->    
+
+
+        <div class="form col-lg-4 col-md-6 col-sm-8" id='test'>
+          <div class="myCon">
+               <h2 class="title"><i class="fa fa-bullseye"></i>Add Categories</h2>
+                <form action="" class="signUp" method="post" autocomplete="off">
+                    <div class="row">
+                        <div class="firstName col-12">
+                            <label for="firstName" class="col-12">Name</label>
+                            <div class="border">
+                                <input type="text" name="firstName" class="col-12" placeholder='more than 3 chars'/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="userName col-12">
+                            <label for="userName" class="col-12">icon</label>
+                            <div class="border">
+                                <input type="text" class="col-12" name="userName"  placeholder='eg. mr.robot'/>
+                            </div>
+                        </div>    
+                    </div>
+                    <div class="row">
+                            <div class="email col-12">
+                                <label for="email" class="col-12">Details</label>
+                                <div class="border">
+                                    <textarea type="text" name="email" class="col-12" ></textarea>
+                                </div>
+                            </div>    
+                        </div>
+                </form>
+            </div>
+            <div class="sup">
+                <input type="submit" value = "Add Categories"/>
+            </div>
+            <p>
+                * By signing up, you agree to receive Stox emails, newsletters & updates.
+            </p>
+        </div>
+
+
+
+
+
 
 <!--
 <div class="login col-lg-4 col-md-6 col-sm-8">

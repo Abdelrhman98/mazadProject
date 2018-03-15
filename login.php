@@ -1,10 +1,14 @@
 <?php
     require_once "init.php";
+    if(isLogin())header("location:index.php");
     if($_SERVER['REQUEST_METHOD'] === 'POST'){
     $r = new user($_POST['email'], $_POST['password']);
     $r->logIn();
 }
 ?>
+
+
+
 <div class="login col-lg-4 col-md-6 col-sm-8">
         <span class="dir-signUp">
             New to Mazad? <a href="signUp.html">Sign up</a>
@@ -39,7 +43,7 @@
             </div>
         </div>
     </div>
-    <script src="js/jquery.min.js"></script>
+<script src="js/jquery.min.js"></script>
 <script src="js/popper.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/main.js"></script>

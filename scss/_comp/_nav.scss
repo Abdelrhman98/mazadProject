@@ -1,19 +1,19 @@
 /*start of nav style*/
     nav.nav-bar{
-
-        @include box-shadow(2px 2px 2px #ccc);
+        @include box-shadow(2px 2px 2px $shadow-color);
         width: 100vw;
         font-family: $sec-font;
-        background-color: $def;
+        background-color: $sec-color;
         padding-top: 8px;
         position: fixed;
         top:0px;
         left: 0px;
         z-index: 999;
+        color: $font-color;
         i.fa.ll{@include icon-hover(1);
             position: absolute;
             top:18px;
-            right:-20px;
+            right:-30px;
         }
 
             div.name{
@@ -59,7 +59,7 @@
             i.sz{
                 font-size: $font-md;
                 color:#ddd;
-                padding-top: 10px;
+                margin-top: 10px;
                 float: right;
                 @include icon-hover(1);
             }
@@ -72,6 +72,14 @@
         div.newSession{
             font-size:$font-lg +12px;
             margin: 0px 15px;
+            @include smooth();
+            i.fa-coffee{
+                cursor: pointer;
+                &:hover{
+                    color:$main-color;
+                    @include smooth();
+                }
+            }
         }
         div.info{
             

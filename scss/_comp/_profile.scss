@@ -4,6 +4,7 @@
         opacity: 0;
         margin:  auto;
         position: relative;
+        color: $font-color;
         h2.head{
             padding: 20px 0 40px 0;
         }
@@ -240,9 +241,7 @@
                 }
                 span.number{
                     font-size: $font-xlg + 40px;
-                    
                 }
             }
         }
-
     }//end of section profile

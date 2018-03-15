@@ -50,6 +50,7 @@ a{
         }
         h1,h2,h3,h4,h5,h6{
             color: $heading-color;
+            color: $font-color;
             font-size : $font-xlg;
             font-family: $first-font;
         }
@@ -62,6 +63,7 @@ a{
 }
 
 @mixin btn-style($val){
+    cursor: pointer;
     @if($val == 1){
         border: 1px solid transparent;
         background-color: $main-color;
@@ -72,6 +74,22 @@ a{
             background-color: $sec-color;
             border: 1px solid $main-color;
             color: $main-color;
+            @include smooth();
+            @include box-shadow(4px 4px 5px #ddd);
+        }
+    }
+
+    @if($val == 2){
+        border: 1px solid $main-color;
+        background-color: $sec-color;
+        color: $main-color;
+        padding: 10px 8px;
+        border-radius: 4px;
+        @include smooth();
+        &:hover{
+            background-color: $main-color;
+            color:$sec-color;
+            border: 1px solid $main-color;
             @include smooth();
             @include box-shadow(4px 4px 5px #ddd);
         }
@@ -87,6 +105,7 @@ a{
     &:hover{
         @include smooth();
         @include box-shadow(0px 0px 10px $shadow-color);
+        border-color:$main-color;
     }
 }
 
@@ -121,6 +140,7 @@ a{
 }
 
 @mixin icon-hover($val){
+    margin-right: 10px;
     @if($val == 1)
     {
         @include smooth();
@@ -129,5 +149,144 @@ a{
             color:$main-color;
             @include smooth();
         }
+    }
+}
+
+@mixin table-style($val){
+    tr.head{
+        color: $font-color;
+        @include box-shadow(0px 0px 0px $shadow-color);
+    }
+    tr{@include box-shadow(0px 0px 2px $shadow-color);
+        color: $font-color;
+    }
+    div{
+        margin-bottom: 30px;
+    }
+    table{width: 100%;}
+    @if($val == 1){
+        table{
+            text-align: center;
+            
+            th:first-of-type{
+                width: 10%;
+            }th:nth-of-type(2){
+                width: 15%;
+            }
+            th:nth-of-type(3){
+                width: 20%;
+            }
+            th:nth-of-type(4){
+                width: 20%;
+            }
+            th:nth-of-type(5){
+                width: 20%;
+            }
+            div.stars{
+                i.fas{
+                    color:#FFDF00;
+                    text-shadow: 0px 0px 10px #FFDF00;
+                }
+            }
+        }
+    }
+    @if($val ==2){
+        table{
+            text-align: center;
+            tr.head{
+                color:$shadow-color;
+            }
+            th{
+                width: 20%;
+            }
+            div.stars{
+                i.fas{
+                    color:#FFDF00;
+                    text-shadow: 0px 0px 10px #FFDF00;
+                }
+            }
+        }
+        
+    }
+
+    @if($val == 3){
+        table{
+            text-align: center;
+            th:first-of-type{
+                width: 5%;
+            }th:nth-of-type(2){
+                width: 10%;
+            }
+            
+            th:nth-of-type(3){
+                width: 10%;
+            }
+            th:nth-of-type(4){
+                width: 20%;
+            }
+            th:nth-of-type(5){
+                width: 20%;
+            }
+            th:nth-of-type(6){
+                width: 15%;
+            }
+            th:nth-of-type(7){
+                width: 20%;
+            }
+    }
+
+    }
+}
+
+@mixin switch($wid, $hei, $onColor, $offColor, $dotColor){
+    width: $wid/2;
+    height: $hei;
+    position: relative;
+    color : #fff;
+    border-radius: 100px;
+    overflow: hidden;
+    cursor: pointer;
+    @include smooth();
+    @include box-shadow(1px 1px 10px $sec-shadow-color);
+    &:hover{
+        @include box-shadow(10px 10px 10px $shadow-color);
+    }
+    .sig{
+        width: $wid * 2;
+        position: absolute;
+        //left:-10px;//-14px -60px
+    }
+    
+    
+    .on,.off{
+        width: ($wid/2);
+        height: $hei;
+        float: left;
+    }
+    .on{
+        background-color: $onColor;
+        padding-left: 10px;
+    }
+    .off{
+        background-color: $offColor;
+        padding-left: 25px;
+    }
+    .sp{
+        width: 5px;
+        height: $hei;
+        background-color: #fff;
+        float: left;
+        position: relative;
+    }
+    .dot
+    {
+        width: $hei;
+        height: $hei;
+        //right: 237px;
+        left: -$hei/2;;//(($wid/2) - $hei) ;
+        background-color: #fff;
+        border-radius: 50%;
+        position: absolute;
+        
     }
 }
